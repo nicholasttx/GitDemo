@@ -1,0 +1,197 @@
+Settings:
+
+# git config --global user.name "Your Name"
+# git config --global user.email "email@example.com"
+
+1. Initiallize a git repository 
+
+[root@willie git]# git init
+Initialized empty Git repository in /root/git/.git/
+[root@willie git]# ls -a
+.  ..  .git
+
+
+2. Add file/files to git repository (first 'add', then 'commit')
+
+
+[root@willie git]# git add readme.txt
+[root@willie git]# git commit -m "wrote a read file"
+[master (root-commit) 569296e] wrote a read file
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+ create mode 100644 readme.txt
+
+[
+$ git add file1.txt
+$ git add file2.txt
+$ git add file3.txt
+$ git commit -m "add 3 files."
+]
+
+# if want to add a new file to the same change, i.e., no new log generated, use below
+# git commit --amend --no-edit
+
+
+
+3. check status
+
+# git status
+
+4. see difference between before and after
+
+# git diff <file name>
+
+
+5. view logs
+
+# git log
+
+6. go back to previous version/versions
+
+# git reset HEAD <filename> //discard the file was 'added' to the cache
+
+# git reset --hard HEAD^(previous one)
+
+# git reset --hard HEAD^^(previous two)
+
+# git reset --hard HEAD~100(previous 100)
+
+# git reset --hard commit_id
+
+
+7. when regret, then check the command history logs
+
+# git reflog
+
+
+
+8. discard the changes
+
+# git checkout -- <space in front of this, file name>
+
+
+
+9. delete file
+
+# git rm <filename>
+# git commit -m "description"
+
+
+
+10. push to remote repository
+
+# git remote add origin <url>
+# git push -u origin master
+
+
+
+11. clone remote repository
+
+# git clone <url>
+
+
+
+12. create branch
+
+# git checkout -b dev //creating 'dev' branch
+
+>>>>[root@willie git]# git checkout -b dev
+Switched to a new branch 'dev'
+
+
+this equals to:
+
+$ git branch dev
+$ git checkout dev
+
+
+--view current branch:
+
+[root@willie git]# git branch
+* dev
+  master
+
+[root@willie git]# echo "test" >> readme.txt
+[root@willie git]# git add readme.txt
+[root@willie git]# git status
+# On branch dev
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#       modified:   readme.txt
+#
+[root@willie git]# git commit -m "testing branching"
+[dev d57d737] testing branching
+ 1 files changed, 1 insertions(+), 0 deletions(-)
+
+
+[root@willie git]# git checkout master
+Switched to branch 'master'
+[root@willie git]# cat readme.txt
+Git is a distributed version control system.
+Git is free software GPL.
+
+
+[root@willie git]# git checkout dev
+Switched to branch 'dev'
+[root@willie git]# cat readme.txt
+Git is a distributed version control system.
+Git is free software GPL.
+willie
+
+
+
+
+13. merge branch to master 
+
+$ git merge dev
+
+
+--after merging them, then we can delete the branch
+
+
+$ git branch -d dev
+Deleted branch dev (was fec145a).
+
+
+
+
+14. store current work zone. If there is some bug you have to fix at this time, but can't leave the current work zone
+
+$ git stash
+Saved working directory and index state WIP on dev: 6224937 add merge
+HEAD is now at 6224937 add merge
+
+# to get it back
+# git stash pop
+
+
+15. tagging
+
+# git tag v1.0
+
+
+using 'git tag' to check the current tags
+
+
+$ git tag
+v1.0
+
+
+---- if forgot to tag the file, the should follow:
+
+
+
+$ git log --pretty=oneline --abbrev-commit
+
+$ git tag v0.9 6224937
+
+
+>>>tags are sorted by alphabet, not the timestamp
+
+
+
+
+
+
+
+
